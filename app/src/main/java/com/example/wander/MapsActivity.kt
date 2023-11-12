@@ -42,10 +42,13 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
     override fun onMapReady(googleMap: GoogleMap) {
         map = googleMap
 
-        // Add a marker in Sydney and move the camera
-        val sydney = LatLng(-34.0, 151.0)
-        map.addMarker(MarkerOptions().position(sydney).title("Marker in Sydney"))
-        map.moveCamera(CameraUpdateFactory.newLatLng(sydney))
+        val latitude = 18.43064
+        val longitude = 95.55288
+        val zoomLevel = 18f
+
+        val homeLatLong = LatLng(latitude, longitude)
+        map.moveCamera(CameraUpdateFactory.newLatLngZoom(homeLatLong, zoomLevel))
+        map.addMarker(MarkerOptions().position(homeLatLong))
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
