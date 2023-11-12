@@ -15,6 +15,8 @@ import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 import com.example.wander.databinding.ActivityMapsBinding
 import com.google.android.gms.maps.model.BitmapDescriptorFactory
+import com.google.android.gms.maps.model.GroundOverlay
+import com.google.android.gms.maps.model.GroundOverlayOptions
 import com.google.android.gms.maps.model.MapStyleOptions
 import java.util.Locale
 
@@ -51,10 +53,15 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         val latitude = 18.43064
         val longitude = 95.55288
         val zoomLevel = 18f
+        val overlaySize = 100f
 
         val homeLatLong = LatLng(latitude, longitude)
         map.moveCamera(CameraUpdateFactory.newLatLngZoom(homeLatLong, zoomLevel))
         map.addMarker(MarkerOptions().position(homeLatLong))
+        val androidOverlay = GroundOverlayOptions()
+            .image(BitmapDescriptorFactory.fromResource(R.drawable.android))
+            .position(homeLatLong, overlaySize)
+        map.addGroundOverlay(androidOverlay)
 
         setMapLongClick(map)
         setPoiClick(map)
